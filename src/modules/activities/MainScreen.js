@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { Card, CardSection, Button } from '../common';
-import AddActivityScreen from '.'; //TODO
+import { Card, CardSection, Button } from '../../common';
+import { AddActivityScreen } from '.'; //TODO
 import { Actions } from 'react-native-router-flux';
 
 class MainScreen extends Component {

@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
-import { CATEGORY_UPDATE, CATEGORY_CREATE_SUCCESS, CATEGORIES_FETCH_SUCCESS } from '.';
+import { CATEGORY_UPDATE, CATEGORY_CREATE_SUCCESS } from '.';
 
 export const categoryUpdate = ({ prop, value }) => {
   return {
@@ -19,16 +19,5 @@ export const createCategory = ({ categoryName }) => {
           dispatch({ type: CATEGORY_CREATE_SUCCESS });
           Actions.pop();
         });
-  }
-}
-
-export const fetchCategories = () => {
-  const { currentUser } = firebase.auth();
-  return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/categories`)
-      .on('value', snapshot => {
-        dispatch({ type: CATEGORIES_FETCH_SUCCESS, payload: snapshot.val() });
-      }
-      );
   }
 }

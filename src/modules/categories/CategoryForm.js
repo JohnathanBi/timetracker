@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { Card, CardSection, Input } from '../common';
+import { Card, CardSection, Input } from '../../common';
 import { connect } from 'react-redux';
 
 import { categoryUpdate } from '.';

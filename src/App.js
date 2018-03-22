@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { View, Text } from 'react-native';
-import reducers from './reducers';
+import reducers from './Reducers';
 import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk';
 

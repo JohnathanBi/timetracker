@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { CardSection } from '../common';
+import { CardSection } from '../../common';
 
 class ListItem extends Component{
 

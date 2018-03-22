@@ -4,7 +4,7 @@ import { Scene, Router, Actions } from 'react-native-router-flux';
 
 import { AddActivityScreen, MainScreen } from './modules/activities';
 import { LoginScreen } from './modules/authentication';
-import { ConnectedCreateCategoryScreen, CategoriesScreen } from './modules/categories';
+import { CreateCategoryScreen, CategoriesScreen } from './modules/categories';
 import { EditMetricsScreen } from './modules/metrics';
 
 
@@ -12,11 +12,11 @@ const RouterComponent = () => {
   return (
     <Router>
       <Scene key="root" hideNavBar>
-        <Scene key="authentication"  >
+        <Scene key="authentication" initial >
           <Scene key="login" component={LoginScreen} title="Please Login" initial />
         </Scene>
 
-        <Scene key="main"  initial>
+        <Scene key="main" >
           <Scene key="mainScreen" component={MainScreen} title="Daily View"  initial />
 
           <Scene key="categoriesScreen"
@@ -27,7 +27,7 @@ const RouterComponent = () => {
           }
 
           />
-          <Scene key="createCategoryScreen" component={ConnectedCreateCategoryScreen} title="Edit Categories"/>
+          <Scene key="createCategoryScreen" component={CreateCategoryScreen} title="Edit Categories"/>
 
           <Scene key="editMetricsScreen" component={EditMetricsScreen} title="Edit Metrics" />
 

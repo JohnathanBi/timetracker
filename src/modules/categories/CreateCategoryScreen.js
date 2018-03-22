@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import CategoryForm from '.';
+import { CategoryForm, createCategory } from '.';
 import { connect } from 'react-redux';
-import { CardSection, Button } from '../common';
-import { createCategory } from '.';
+import { CardSection, Button } from '../../common';
 
-class CreateCategoryScreen extends Component {
+
+class preCreateCategoryScreen extends Component {
 
   onCreateCategory() {
     const { categoryName } = this.props;
@@ -33,6 +33,6 @@ const mapStateToProps = state => {
   };
 };
 
-const ConnectedCreateCategoryScreen = connect(mapStateToProps, { createCategory })(CreateCategoryScreen)
+const CreateCategoryScreen = connect(mapStateToProps, { createCategory })(preCreateCategoryScreen)
 
-export { ConnectedCreateCategoryScreen };
+export { CreateCategoryScreen };
