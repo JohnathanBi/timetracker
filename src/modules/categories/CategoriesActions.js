@@ -1,10 +1,10 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
-import { CATEGORY_UPDATE, CATEGORY_CREATE_SUCCESS } from '.';
+import { CATEGORY_PROPERTY_UPDATE, CATEGORY_PUSH_SUCCESS } from '.';
 
-export const categoryUpdate = ({ prop, value }) => {
+export const categoryPropertyUpdate = ({ prop, value }) => {
   return {
-    type: CATEGORY_UPDATE,
+    type: CATEGORY_PROPERTY_UPDATE,
     payload: { prop, value }
   }
 }
@@ -16,7 +16,20 @@ export const createCategory = ({ categoryName }) => {
     firebase.database().ref(`/users/${currentUser.uid}/categories`)
       .push({ categoryName, isDeleted: false })
         .then(() => {
-          dispatch({ type: CATEGORY_CREATE_SUCCESS });
+          dispatch({ type: CATEGORY_PUSH_SUCCESS });
+          Actions.pop();
+        });
+  }
+}
+
+export const updateCategory = ({ uid, categoryName, isDeleted }) => {
+  const { currentUser } = firebase.auth();
+
+  return (dispatch) => {
+    firebase.database().ref(`/users/${currentUser.uid}/categories/${uid}`)
+      .set({ uid, categoryName, isDeleted })
+        .then(() => {
+          dispatch({ type: CATEGORY_PUSH_SUCCESS });
           Actions.pop();
         });
   }

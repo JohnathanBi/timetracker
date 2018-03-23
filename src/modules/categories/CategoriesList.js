@@ -27,7 +27,7 @@ class preCategoriesList extends Component {
 }
 const mapStateToProps = state => {
   //this function turns an object { uid: val, uid: val } into an array [{...val, uid}, {...}, ...]
-  const categories = _.map(state.global, (val, uid) => {
+  const categories = _.map(state.global.activeCategories, (val, uid) => {
     return { ...val, uid };
   });
 

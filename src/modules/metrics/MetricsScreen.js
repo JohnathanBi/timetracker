@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { CategoriesList } from '.';
+import { MetricsList } from '.';
 
-class CategoriesScreen extends Component {
-
+class MetricsScreen extends Component {
   render() {
     return (
       <View>
-        <CategoriesList />
+        <MetricsList />
       </View>
     );
   }
 }
 
-export { CategoriesScreen };
+export { MetricsScreen };

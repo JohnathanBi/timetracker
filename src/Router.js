@@ -4,8 +4,8 @@ import { Scene, Router, Actions } from 'react-native-router-flux';
 
 import { AddActivityScreen, MainScreen } from './modules/activities';
 import { LoginScreen } from './modules/authentication';
-import { CreateCategoryScreen, CategoriesScreen } from './modules/categories';
-import { EditMetricsScreen } from './modules/metrics';
+import { CreateCategoryScreen, CategoriesScreen, EditCategoryScreen } from './modules/categories';
+import { EditMetricScreen, MetricsScreen, CreateMetricScreen } from './modules/metrics';
 
 
 const RouterComponent = () => {
@@ -21,15 +21,23 @@ const RouterComponent = () => {
 
           <Scene key="categoriesScreen"
           component={CategoriesScreen}
-          title="Edit Categories"
+          title="My Categories"
           rightTitle="Add"
-          onRight={() => Actions.createCategoryScreen()
-          }
-
+          onRight={() => Actions.createCategoryScreen()}
           />
-          <Scene key="createCategoryScreen" component={CreateCategoryScreen} title="Edit Categories"/>
+          <Scene key="createCategoryScreen" component={CreateCategoryScreen} title="Create Category"/>
+          <Scene key="editCategoryScreen" component={EditCategoryScreen} title="Edit Category"/>
 
-          <Scene key="editMetricsScreen" component={EditMetricsScreen} title="Edit Metrics" />
+
+          <Scene key="metricsScreen"
+          component={MetricsScreen}
+          title="My Metrics"
+          rightTitle="Add"
+          onRight={() => Actions.createMetricScreen()}
+          />
+          <Scene key="editMetricScreen" component={EditMetricScreen} title="Edit Metric" />
+          <Scene key="createMetricScreen" component={CreateMetricScreen} title="Create Metric" />
+
 
           <Scene key="addActivityScreen" component={AddActivityScreen} title="Add Activity" />
         </Scene>

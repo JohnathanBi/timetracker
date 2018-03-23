@@ -1,2 +1,2 @@
-export const CATEGORY_UPDATE = 'category_update';
-export const CATEGORY_CREATE_SUCCESS = 'category_create_success';
+export const CATEGORY_PROPERTY_UPDATE = 'category_property_update';
+export const CATEGORY_PUSH_SUCCESS = 'category_push_success';

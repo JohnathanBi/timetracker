@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import { Card, CardSection, Input } from '../../common';
 import { connect } from 'react-redux';
 
-import { categoryUpdate } from '.';
+import { categoryPropertyUpdate } from '.';
 
 class preCategoryForm extends Component {
 
@@ -13,26 +13,25 @@ class preCategoryForm extends Component {
         <Card>
           <CardSection>
             <Input
-              label="Category Name"
+              label="Name"
               placeholder="Health"
-              value={this.props.name}
-              onChangeText={text => this.props.categoryUpdate({ prop: 'categoryName', value: text })}
+              value={this.props.categoryName}
+              onChangeText={text => this.props.categoryPropertyUpdate({ prop: 'categoryName', value: text })}
             />
           </CardSection>
         </Card>
       </View>
     );
   }
-
 }
 
 const mapStateToProps = state => {
   return {
-    name: state.categoryForm.name,
+    categoryName: state.categoryForm.categoryName,
     isDeleted: state.categoryForm.isDeleted
   };
 };
 
-const CategoryForm = connect(mapStateToProps, { categoryUpdate })(preCategoryForm);
+const CategoryForm = connect(mapStateToProps, { categoryPropertyUpdate })(preCategoryForm);
 
 export { CategoryForm };

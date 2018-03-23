@@ -6,16 +6,16 @@ import { CardSection } from '../../common';
 class ListItem extends Component{
 
   onRowPress(){
-    Actions.editCategoryScreen({ category: this.props.category });
+    Actions.editMetricScreen({ metric: this.props.metric });
   }
 
   render() {
-    const { categoryName } = this.props.category.item;
+    const { metricName } = this.props.metric.item;
     return (
       <TouchableOpacity onPress={this.onRowPress.bind(this)}>
         <CardSection>
           <Text>
-            {categoryName}
+            {metricName}
           </Text>
         </CardSection>
       </TouchableOpacity>

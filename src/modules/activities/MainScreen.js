@@ -15,7 +15,7 @@ class MainScreen extends Component {
     }
 
     onEditMetrics() {
-      Actions.editMetricsScreen();
+      Actions.metricsScreen();
     }
 
     onLogOut() {
