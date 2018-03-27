@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { Card, CardSection, Button } from '../../common';
-import { AddActivityScreen } from '.'; //TODO
+import { Card, CardSection, Button, fetchCategories, fetchMetrics } from '../../common';
+import { DailyActivitiesList } from '.'; //TODO
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
 
-class MainScreen extends Component {
+class preMainScreen extends Component {
+
+    componentWillMount(){
+      this.props.fetchMetrics();
+      this.props.fetchCategories();
+    }
 
     onAddActivity() {
       Actions.addActivityScreen();
@@ -54,10 +60,12 @@ class MainScreen extends Component {
         </Card>
 
         //displays the list of activities tracked for the current day
-        <AddActivityScreen />
+        <DailyActivitiesList />
       </View>
     );
   }
 }
+
+const MainScreen = connect(null, { fetchMetrics, fetchCategories })(preMainScreen);
 
 export { MainScreen };

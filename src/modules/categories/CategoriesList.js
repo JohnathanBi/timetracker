@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import {  FlatList, View } from 'react-native';
 import { connect } from 'react-redux';
-import { fetchCategories } from '../../common';
 import { ListItem } from '.';
 import _ from 'lodash';
 
 class preCategoriesList extends Component {
-  componentWillMount() {
-    this.props.fetchCategories();
-  }
 
   renderRow(category) {
     return <ListItem category={category} />;
@@ -17,7 +13,7 @@ class preCategoriesList extends Component {
   render() {
     return (
       <FlatList
-        data={this.props.categories}
+        data={this.props.activeCategories}
         renderItem={this.renderRow}
         keyExtractor={category => category.uid}
       />
@@ -27,13 +23,13 @@ class preCategoriesList extends Component {
 }
 const mapStateToProps = state => {
   //this function turns an object { uid: val, uid: val } into an array [{...val, uid}, {...}, ...]
-  const categories = _.map(state.global.activeCategories, (val, uid) => {
+  const activeCategories = _.map(state.global.activeCategories, (val, uid) => {
     return { ...val, uid };
   });
 
-  return { categories };
+  return { activeCategories };
 };
 
-const CategoriesList = connect(mapStateToProps, { fetchCategories })(preCategoriesList);
+const CategoriesList = connect(mapStateToProps, null )(preCategoriesList);
 
 export { CategoriesList };

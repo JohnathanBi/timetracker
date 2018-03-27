@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import {  FlatList, View } from 'react-native';
 import { connect } from 'react-redux';
-import { fetchMetrics } from '../../common';
 import { ListItem } from '.';
 import _ from 'lodash';
 
 class preMetricsList extends Component {
-  componentWillMount() {
-    this.props.fetchMetrics();
-  }
 
   renderRow(metric) {
     return <ListItem metric={metric} />;
@@ -35,6 +31,6 @@ const mapStateToProps = state => {
   return { metrics };
 };
 
-const MetricsList = connect(mapStateToProps, { fetchMetrics })(preMetricsList);
+const MetricsList = connect(mapStateToProps, null)(preMetricsList);
 
 export { MetricsList };

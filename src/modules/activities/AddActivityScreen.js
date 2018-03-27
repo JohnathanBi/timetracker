@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { ScrollView, Text } from 'react-native';
+import { ActivityForm } from '.';
+import { CardSection, Button } from '../../common';
 
 class AddActivityScreen extends Component {
+
+  onSaveActivity() {
+
+  }
+
   render() {
     return (
-      <View>
-        <Text>
-          AddActivityScreen
-        </Text>
-      </View>
+      <ScrollView>
+        <ActivityForm />
+
+        <CardSection>
+          <Button onPress={this.onSaveActivity.bind(this)}>
+            Save
+          </Button>
+        </CardSection>
+      </ScrollView>
     );
   }
 }
