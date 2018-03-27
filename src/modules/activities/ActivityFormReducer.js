@@ -1,17 +1,20 @@
-import { ACTIVITY_FORM_UPDATE } from '.';
+import { ACTIVITY_FORM_UPDATE, ACTIVITY_PUSH_SUCCESS } from '.';
 
 const INITIAL_STATE = {
   startTime: new Date().toUTCString(),
   endTime: new Date().toUTCString(),
   categoryUid: null,
+  activityMetrics: {}
 };
 
 export const ActivityFormReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ACTIVITY_FORM_UPDATE:
-      console.log(action)
-      console.log({ ...state, [action.payload.prop]: action.payload.value });
       return { ...state, [action.payload.prop]: action.payload.value };
+
+    case ACTIVITY_PUSH_SUCCESS:
+      return INITIAL_STATE;
+      
     default:
       return state;
   }

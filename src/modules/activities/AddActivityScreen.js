@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { ScrollView, Text } from 'react-native';
-import { ActivityForm } from '.';
+import { ActivityForm, createActivity } from '.';
 import { CardSection, Button } from '../../common';
+import { connect } from 'react-redux'
 
-class AddActivityScreen extends Component {
+class preAddActivityScreen extends Component {
 
   onSaveActivity() {
+    const { startTime, endTime, categoryUid, activityMetrics } = this.props;
 
+    this.props.createActivity({ startTime, endTime, categoryUid, activityMetrics });
   }
 
   render() {
@@ -23,5 +26,13 @@ class AddActivityScreen extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  const { startTime, endTime, categoryUid, activityMetrics } = state.activityForm;
+
+  return { startTime, endTime, categoryUid, activityMetrics };
+}
+
+const AddActivityScreen = connect(mapStateToProps, { createActivity })(preAddActivityScreen);
 
 export { AddActivityScreen };
