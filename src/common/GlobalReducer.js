@@ -1,13 +1,15 @@
 import {
   CATEGORIES_FETCH_SUCCESS,
-  METRICS_FETCH_SUCCESS
+  METRICS_FETCH_SUCCESS,
+  ACTIVITIES_FETCH_SUCCESS
 } from '.';
 
 const INITIAL_STATE = {
   allCategories: null,
   activeCategories: null,
   allMetrics: null,
-  activeMetrics: null
+  activeMetrics: null,
+  allActivities: null
 };
 
 export const GlobalReducer = (state = INITIAL_STATE, action) => {
@@ -39,6 +41,12 @@ export const GlobalReducer = (state = INITIAL_STATE, action) => {
         }
 
         return {...state, allMetrics, activeMetrics  };
+
+    case ACTIVITIES_FETCH_SUCCESS:
+
+      console.log(action);
+      return { ...state, allActivities: action.payload };
+
     default:
       return state;
   }

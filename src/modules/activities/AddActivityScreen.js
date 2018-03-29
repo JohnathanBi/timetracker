@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView, Text, Alert } from 'react-native';
 import { ActivityForm, createActivity } from '.';
 import { CardSection, Button } from '../../common';
 import { connect } from 'react-redux'
@@ -9,7 +9,21 @@ class preAddActivityScreen extends Component {
   onSaveActivity() {
     const { startTime, endTime, categoryUid, activityMetrics } = this.props;
 
-    this.props.createActivity({ startTime, endTime, categoryUid, activityMetrics });
+    if (startTime >= endTime) {
+      Alert.alert(
+        'Error',
+        'Start time must be earlier than end time',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed'), style: 'cancel' },
+        ],
+        { cancelable: false }
+      );
+    } else {
+      this.props.createActivity({ startTime, endTime, categoryUid, activityMetrics });
+    }
+
+
+
   }
 
   render() {

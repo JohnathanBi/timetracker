@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { Card, CardSection, Button, fetchCategories, fetchMetrics } from '../../common';
+import { Card, CardSection, Button, fetchCategories, fetchMetrics, fetchActivities } from '../../common';
 import { DailyActivitiesList } from '.'; //TODO
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
@@ -10,6 +10,7 @@ class preMainScreen extends Component {
     componentWillMount(){
       this.props.fetchMetrics();
       this.props.fetchCategories();
+      this.props.fetchActivities();
     }
 
     onAddActivity() {
@@ -66,6 +67,6 @@ class preMainScreen extends Component {
   }
 }
 
-const MainScreen = connect(null, { fetchMetrics, fetchCategories })(preMainScreen);
+const MainScreen = connect(null, { fetchMetrics, fetchCategories, fetchActivities })(preMainScreen);
 
 export { MainScreen };

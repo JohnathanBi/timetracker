@@ -54,12 +54,15 @@ class preActivityForm extends Component {
     this.props.activityFormUpdate({ prop: 'categoryUid', value: firstUid });
   }
 
-  localToUTC(localDate){
-    return localDate.toUTCString();
+  localDateToTruncatedTime(localDate){
+      localDate.setSeconds(0);
+      localDate.setMilliseconds(0);
+
+      return (new Date(localDate)).getTime();
   }
 
-  UTCtoLocalDate(UTCDate){
-    return new Date(UTCDate);
+  timeToLocalDate(time){
+    return new Date(time);
   }
 
 
@@ -82,7 +85,6 @@ class preActivityForm extends Component {
       const metricPickerList = _.map(activeMetrics,
         (metric, uid) => {
           const { metricName } = metric;
-          const propValue = `metric${uid}`;
 
           return (
             <CardSection style={{ flexDirection: 'column' }} key={uid}>
@@ -134,8 +136,8 @@ class preActivityForm extends Component {
           <View style={styles.container}>
             <Text style={styles.pickerTextStyle}>Start Time</Text>
             <DatePickerIOS
-               date={this.UTCtoLocalDate(this.props.startTime)}
-               onDateChange={date => this.props.activityFormUpdate({ prop: 'startTime', value: this.localToUTC(date) })}
+               date={this.timeToLocalDate(this.props.startTime)}
+               onDateChange={date => this.props.activityFormUpdate({ prop: 'startTime', value: this.localDateToTruncatedTime(date) })}
                minuteInterval={5}
             />
           </View>
@@ -146,8 +148,8 @@ class preActivityForm extends Component {
           <View style={styles.container}>
             <Text style={styles.pickerTextStyle}>End Time</Text>
             <DatePickerIOS
-               date={this.UTCtoLocalDate(this.props.endTime)}
-               onDateChange={date => this.props.activityFormUpdate({ prop: 'endTime', value: this.localToUTC(date) })}
+               date={this.timeToLocalDate(this.props.endTime)}
+               onDateChange={date => this.props.activityFormUpdate({ prop: 'endTime', value: this.localDateToTruncatedTime(date) })}
                minuteInterval={5}
             />
           </View>
