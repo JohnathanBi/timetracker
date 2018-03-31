@@ -11,7 +11,6 @@ export const activityFormUpdate = ({ prop, value }) => {
 
 export const createActivity = ({ startTime, endTime, categoryUid, activityMetrics }) => {
   const { currentUser } = firebase.auth();
-
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/activities`)
       .push({ startTime, endTime, categoryUid, activityMetrics  })

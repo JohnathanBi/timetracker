@@ -4,6 +4,7 @@ import {
   ACTIVITIES_FETCH_SUCCESS
 } from '.';
 import _ from 'lodash';
+import moment from 'moment';
 
 const INITIAL_STATE = {
   allCategories: null,
@@ -51,15 +52,15 @@ export const GlobalReducer = (state = INITIAL_STATE, action) => {
       allActivities = _.orderBy(allActivities, ['startTime']);
 
       //get Daily Activities
-      const today = new Date();
+      const today = moment();
       const dailyActivities = [];
       for (let i = 0; i < allActivities.length; i++) {
         const { startTime, endTime } = allActivities[i];
 
         //this is for blocks that span multiple days
-        if (startTime < (new Date(today)).getTime() && endTime > (new Date(today)).getTime()) {
+        if (moment(startTime).isBefore(today) && moment(endTime).isAfter(today)) {
           dailyActivities.push(allActivities[i]);
-        } else if (isSameDay(startTime, today) || isSameDay(endTime, today)) {
+        } else if (moment(startTime).isSame(today, 'd') || moment(endTime).isSame(today, 'd')) {
           dailyActivities.push(allActivities[i]);
         }
       }
@@ -69,14 +70,4 @@ export const GlobalReducer = (state = INITIAL_STATE, action) => {
     default:
       return state;
   }
-}
-
-const isSameDay = (date1, date2) => {
-  if((new Date(date1)).getFullYear() === (new Date(date2)).getFullYear()
-   && (new Date(date1)).getMonth() === (new Date(date2)).getMonth()
-   && (new Date(date1)).getDate() === (new Date(date2)).getDate()){
-     return true;
-   }else {
-     return false;
-   }
 }

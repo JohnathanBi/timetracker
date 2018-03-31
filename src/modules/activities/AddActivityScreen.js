@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { ScrollView, Text, Alert } from 'react-native';
 import { ActivityForm, createActivity } from '.';
 import { CardSection, Button } from '../../common';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import moment from 'moment';
 
 class preAddActivityScreen extends Component {
 
@@ -24,7 +25,7 @@ class preAddActivityScreen extends Component {
     for (let i = 0; i < allActivities.length; i++){
       const { startTime } = allActivities[i];
 
-      if (newStartTime < startTime) {
+      if (moment(newStartTime).isBefore(startTime)) {
         if (i !== 0){
           blockAbove = allActivities[i - 1];
         }
@@ -41,7 +42,7 @@ class preAddActivityScreen extends Component {
     if (blockAbove) {
       const { startTime, endTime } = blockAbove;
 
-      if (endTime > newStartTime) {
+      if (moment(endTime).isAfter(newStartTime)) {
         Alert.alert(
           'No Time-Overlap Allowed',
           `There already exists an activity from ${new Date(startTime)} to ${new Date(endTime)}`,
@@ -59,7 +60,7 @@ class preAddActivityScreen extends Component {
     if (blockBelow) {
       const { startTime, endTime } = blockBelow;
 
-      if (startTime < newEndTime) {
+      if (moment(startTime).isBefore(newEndTime)) {
         Alert.alert(
           'No Time-Overlap Allowed',
           `There already exists an activity from ${new Date(startTime)} to ${new Date(endTime)}`,
@@ -77,7 +78,7 @@ class preAddActivityScreen extends Component {
   }
 
   startEndTimeFeasible(startTime, endTime){
-    if (startTime >= endTime) {
+    if (!moment(startTime).isBefore(endTime)) {
       Alert.alert(
         'Error',
         'Start time must be earlier than end time',
@@ -102,6 +103,9 @@ class preAddActivityScreen extends Component {
             Save
           </Button>
         </CardSection>
+
+
+
       </ScrollView>
     );
   }

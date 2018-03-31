@@ -7,14 +7,10 @@ const INITIAL_STATE = {
   activityMetrics: {}
 };
 
-
-
-
 export const ActivityFormReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ACTIVITY_FORM_UPDATE:
       return { ...state, [action.payload.prop]: action.payload.value };
-
     case ACTIVITY_PUSH_SUCCESS:
       return INITIAL_STATE;
 

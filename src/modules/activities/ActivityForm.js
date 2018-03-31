@@ -4,6 +4,7 @@ import { Card, CardSection, Button } from '../../common';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { activityFormUpdate } from '.';
+import moment from 'moment';
 
 class preActivityForm extends Component {
   // state = { showStartTimePicker: false, showEndTimePicker: false };
@@ -28,25 +29,25 @@ class preActivityForm extends Component {
     if (dailyActivities.length === 0) {
       this.props.activityFormUpdate({
         prop: 'startTime',
-        value: this.truncateDate((new Date((new Date()).setHours(7))).setMinutes(0))
+        value: this.truncateAndFormatMoment(moment().hour(7).minute(0).second(0))
       });
 
       this.props.activityFormUpdate({
         prop: 'endTime',
-        value: this.truncateDate((new Date((new Date()).setHours(8))).setMinutes(0))
+        value: this.truncateAndFormatMoment(moment().hour(8).minute(0).second(0))
       });
     } else {
       //find the endTime of the last activity and set it to that
-      const newStartTime = dailyActivities[dailyActivities.length - 1].endTime;
+      const newStartTime = moment(dailyActivities[dailyActivities.length - 1].endTime);
       this.props.activityFormUpdate({
         prop: 'startTime',
-        value: newStartTime
+        value: this.truncateAndFormatMoment(newStartTime)
       });
 
-      const newEndTime = (new Date(newStartTime)).setHours((new Date(newStartTime)).getHours() + 1);
+      const newEndTime = newStartTime.clone().add(1, 'hours');
       this.props.activityFormUpdate({
         prop: 'endTime',
-        value: newEndTime
+        value: this.truncateAndFormatMoment(newEndTime)
       });
     }
   }
@@ -90,24 +91,11 @@ class preActivityForm extends Component {
     this.props.activityFormUpdate({ prop: 'categoryUid', value: firstUid });
   }
 
-  localDateToTruncatedTime(localDate) {
-      const truncatedDate = this.truncateDate(localDate);
 
-      return (new Date(truncatedDate)).getTime();
+  truncateAndFormatMoment(preMoment) {
+    const truncatedMoment = preMoment.clone().second(0).millisecond(0);
+    return truncatedMoment.format();
   }
-
-  truncateDate(preTruncatedDate) {
-    let date = (new Date(preTruncatedDate)).setSeconds(0);
-    date = (new Date(date)).setMilliseconds(0);
-
-    return date;
-  }
-
-  timeToLocalDate(time){
-    return new Date(time);
-  }
-
-
 
     renderPickerCategories() {
       const { activeCategories } = this.props;
@@ -152,10 +140,10 @@ class preActivityForm extends Component {
         }
       );
 
-
-
       return metricPickerList;
     }
+
+
 
   render() {
     return (
@@ -178,8 +166,8 @@ class preActivityForm extends Component {
           <View style={styles.container}>
             <Text style={styles.pickerTextStyle}>Start Time</Text>
             <DatePickerIOS
-               date={this.timeToLocalDate(this.props.startTime)}
-               onDateChange={date => this.props.activityFormUpdate({ prop: 'startTime', value: this.localDateToTruncatedTime(date) })}
+               date={(new Date(this.props.startTime))}
+               onDateChange={date => this.props.activityFormUpdate({ prop: 'startTime', value: this.truncateAndFormatMoment(moment(date)) })}
                minuteInterval={5}
             />
           </View>
@@ -190,8 +178,8 @@ class preActivityForm extends Component {
           <View style={styles.container}>
             <Text style={styles.pickerTextStyle}>End Time</Text>
             <DatePickerIOS
-               date={this.timeToLocalDate(this.props.endTime)}
-               onDateChange={date => this.props.activityFormUpdate({ prop: 'endTime', value: this.localDateToTruncatedTime(date) })}
+               date={(new Date(this.props.endTime))}
+               onDateChange={date => this.props.activityFormUpdate({ prop: 'endTime', value: this.truncateAndFormatMoment(moment(date)) })}
                minuteInterval={5}
             />
           </View>
