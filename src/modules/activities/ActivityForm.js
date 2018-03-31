@@ -76,7 +76,7 @@ class preActivityForm extends Component {
     return `${magnitude}`;
   }
 
-  updateMetric(uid, magnitude){
+  updateMetric (uid, magnitude) {
     const newActivityMetrics = { ...this.props.activityMetrics, [uid]: magnitude };
     this.props.activityFormUpdate({ prop: 'activityMetrics', value: newActivityMetrics });
   }
@@ -90,7 +90,7 @@ class preActivityForm extends Component {
     this.props.activityFormUpdate({ prop: 'categoryUid', value: firstUid });
   }
 
-  localDateToTruncatedTime(localDate){
+  localDateToTruncatedTime(localDate) {
       const truncatedDate = this.truncateDate(localDate);
 
       return (new Date(truncatedDate)).getTime();
@@ -109,7 +109,7 @@ class preActivityForm extends Component {
 
 
 
-    renderPickerCategories(){
+    renderPickerCategories() {
       const { activeCategories } = this.props;
       const pickerItemList = _.map(activeCategories,
         (category, uid) => {

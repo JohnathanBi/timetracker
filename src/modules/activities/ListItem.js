@@ -2,6 +2,8 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { CardSection } from '../../common';
+import { connect } from 'react-redux';
+import _ from 'lodash';
 
 class ListItem extends Component{
 
@@ -9,13 +11,32 @@ class ListItem extends Component{
     //Actions.editCategoryScreen({ category: this.props.category });
   }
 
+  renderMetricsList(){
+    const { namedMetricsList } = this.props;
+    const metricsList = _.map(namedMetricsList,
+      (magnitude, metricName) => {
+        return (
+          <CardSection>
+            <Text>
+              {`${metricName}: ${magnitude}`}
+            </Text>
+          </CardSection>
+        );
+      }
+    );
+
+    return metricsList;
+
+  }
+
   render() {
+    const { categoryName } = this.props;
     const { categoryUid, startTime, endTime, activityMetrics } = this.props.activity.item;
     return (
       <TouchableOpacity onPress={this.onRowPress.bind(this)}>
         <CardSection>
           <Text>
-            {categoryUid}
+            {categoryName}
           </Text>
         </CardSection>
 
@@ -32,9 +53,7 @@ class ListItem extends Component{
         </CardSection>
 
         <CardSection>
-          <Text>
-            {'Activities TBD'}
-          </Text>
+          {this.renderMetricsList()}
         </CardSection>
 
       </TouchableOpacity>

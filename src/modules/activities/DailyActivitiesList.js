@@ -9,8 +9,40 @@ class preDailyActivitiesList extends Component {
     console.log('testing', this.props.dailyActivities);
   }
 
+  getCategoryNameFromUID(categoryUid) {
+    const { allCategories } = this.props;
+
+    for (let uid in allCategories){
+      if (categoryUid === uid) {
+        const { categoryName } = allCategories[uid];
+        return categoryName;
+      }
+    }
+
+    return null;
+  }
+
+  getNamedMetricsListFromUidList(uidMetricsList) {
+    let namedMetricsList = {};
+
+    for(let uidActivity in uidMetricsList){
+      for(let uid in this.props.allMetrics){
+
+        if(uidActivity === uid){
+          const { metricName } = this.props.allMetrics[uid];
+          namedMetricsList = { ...namedMetricsList, [metricName]: uidMetricsList[uid] };
+        }
+      }
+    }
+
+    return namedMetricsList;
+  }
+
   renderRow(activity) {
-    return <ListItem activity={activity} />;
+    const { categoryUid, startTime, endTime, activityMetrics } = activity.item;
+    const categoryName = this.getCategoryNameFromUID(categoryUid);
+    const namedMetricsList = this.getNamedMetricsListFromUidList(activityMetrics);
+    return <ListItem activity={activity} categoryName={categoryName} namedMetricsList={namedMetricsList} />;
   }
 
   render() {
@@ -19,7 +51,7 @@ class preDailyActivitiesList extends Component {
       <ScrollView>
         <FlatList
           data={this.props.dailyActivities}
-          renderItem={this.renderRow}
+          renderItem={this.renderRow.bind(this)}
           keyExtractor={activity => activity.uid}
         />
       </ScrollView>
@@ -28,8 +60,12 @@ class preDailyActivitiesList extends Component {
 }
 
 const mapStateToProps = state => {
+  const { dailyActivities, allCategories, allMetrics } = state.global;
+
   return {
-    dailyActivities: state.global.dailyActivities
+    dailyActivities,
+    allMetrics,
+    allCategories
   };
 }
 
