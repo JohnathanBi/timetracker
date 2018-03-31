@@ -21,13 +21,13 @@ class ListItem extends Component{
 
         <CardSection>
           <Text>
-            {startTime}
+            {`startTime: ${startTime} ${new Date(startTime)} `}
           </Text>
         </CardSection>
 
         <CardSection>
           <Text>
-            {endTime}
+            {`endTime: ${endTime} ${new Date(endTime)}`}
           </Text>
         </CardSection>
 

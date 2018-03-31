@@ -13,7 +13,6 @@ export const fetchCategories = () => {
   }
 }
 
-
 export const fetchMetrics = () => {
   const { currentUser } = firebase.auth();
   return (dispatch) => {

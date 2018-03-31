@@ -1,8 +1,8 @@
 import { ACTIVITY_FORM_UPDATE, ACTIVITY_PUSH_SUCCESS } from '.';
 
 const INITIAL_STATE = {
-  startTime: (new Date()).getTime(),
-  endTime: (new Date()).getTime(),
+  startTime: null,
+  endTime: null,
   categoryUid: null,
   activityMetrics: {}
 };

@@ -9,10 +9,46 @@ class preActivityForm extends Component {
   // state = { showStartTimePicker: false, showEndTimePicker: false };
 
   componentWillMount() {
+    //this is to prevent overriding old data
     if (this.props.categoryUid === null) {
       this.setDefaultCategoryUid();
     }
+
+    //the function here takes care of not overriding old data already
     this.setDefaultMetrics();
+
+    if (this.props.startTime === null || this.props.endTime === null){
+      this.setDefaultTime();
+    }
+  }
+
+  setDefaultTime() {
+    const { dailyActivities } = this.props;
+
+    if (dailyActivities.length === 0) {
+      this.props.activityFormUpdate({
+        prop: 'startTime',
+        value: this.truncateDate((new Date((new Date()).setHours(7))).setMinutes(0))
+      });
+
+      this.props.activityFormUpdate({
+        prop: 'endTime',
+        value: this.truncateDate((new Date((new Date()).setHours(8))).setMinutes(0))
+      });
+    } else {
+      //find the endTime of the last activity and set it to that
+      const newStartTime = dailyActivities[dailyActivities.length - 1].endTime;
+      this.props.activityFormUpdate({
+        prop: 'startTime',
+        value: newStartTime
+      });
+
+      const newEndTime = (new Date(newStartTime)).setHours((new Date(newStartTime)).getHours() + 1);
+      this.props.activityFormUpdate({
+        prop: 'endTime',
+        value: newEndTime
+      });
+    }
   }
 
   setDefaultMetrics() {
@@ -55,10 +91,16 @@ class preActivityForm extends Component {
   }
 
   localDateToTruncatedTime(localDate){
-      localDate.setSeconds(0);
-      localDate.setMilliseconds(0);
+      const truncatedDate = this.truncateDate(localDate);
 
-      return (new Date(localDate)).getTime();
+      return (new Date(truncatedDate)).getTime();
+  }
+
+  truncateDate(preTruncatedDate) {
+    let date = (new Date(preTruncatedDate)).setSeconds(0);
+    date = (new Date(date)).setMilliseconds(0);
+
+    return date;
   }
 
   timeToLocalDate(time){
@@ -167,14 +209,15 @@ class preActivityForm extends Component {
 
 const mapStateToProps = state => {
   const { startTime, endTime, categoryUid, activityMetrics } = state.activityForm;
-  const { activeCategories, activeMetrics } = state.global;
+  const { activeCategories, activeMetrics, dailyActivities } = state.global;
   return {
     activeCategories,
     activeMetrics,
     startTime,
     endTime,
     categoryUid,
-    activityMetrics
+    activityMetrics,
+    dailyActivities
   };
 }
 

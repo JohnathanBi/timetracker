@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList,ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-import _ from 'lodash';
 import { ListItem } from '.';
 
 class preDailyActivitiesList extends Component {
 
   componentWillMount(){
-    console.log('testing', this.props.allActivities);
+    console.log('testing', this.props.dailyActivities);
   }
 
   renderRow(activity) {
@@ -19,7 +18,7 @@ class preDailyActivitiesList extends Component {
 
       <ScrollView>
         <FlatList
-          data={this.props.allActivities}
+          data={this.props.dailyActivities}
           renderItem={this.renderRow}
           keyExtractor={activity => activity.uid}
         />
@@ -29,11 +28,9 @@ class preDailyActivitiesList extends Component {
 }
 
 const mapStateToProps = state => {
-  const allActivities = _.map(state.global.allActivities, (val, uid) => {
-    return { ...val, uid };
-  });
-
-  return { allActivities };
+  return {
+    dailyActivities: state.global.dailyActivities
+  };
 }
 
 const DailyActivitiesList = connect(mapStateToProps, null)(preDailyActivitiesList);
