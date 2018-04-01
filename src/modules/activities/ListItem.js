@@ -4,6 +4,7 @@ import { Actions } from 'react-native-router-flux';
 import { CardSection } from '../../common';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import moment from 'moment';
 
 class ListItem extends Component{
 
@@ -42,13 +43,13 @@ class ListItem extends Component{
 
         <CardSection>
           <Text>
-            {`startTime: ${startTime} ${new Date(startTime)} `}
+            {`startTime: ${moment(startTime).format('LLLL')} `}
           </Text>
         </CardSection>
 
         <CardSection>
           <Text>
-            {`endTime: ${endTime} ${new Date(endTime)}`}
+            {`endTime:  ${moment(endTime).format('LLLL')}`}
           </Text>
         </CardSection>
 

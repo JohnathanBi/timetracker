@@ -1,12 +1,16 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
-import { CATEGORY_PROPERTY_UPDATE, CATEGORY_PUSH_SUCCESS } from '.';
+import { CATEGORY_PROPERTY_UPDATE, CATEGORY_PUSH_SUCCESS, CLEAR_CATEGORY_FORM_DATA } from '.';
 
 export const categoryPropertyUpdate = ({ prop, value }) => {
   return {
     type: CATEGORY_PROPERTY_UPDATE,
     payload: { prop, value }
   }
+}
+
+export const clearCategoryFormData = () => {
+  return { type: CLEAR_CATEGORY_FORM_DATA };
 }
 
 export const createCategory = ({ categoryName }) => {

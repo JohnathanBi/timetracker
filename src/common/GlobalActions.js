@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import { CATEGORIES_FETCH_SUCCESS, METRICS_FETCH_SUCCESS, ACTIVITIES_FETCH_SUCCESS } from '.';
+import { CATEGORIES_FETCH_SUCCESS, METRICS_FETCH_SUCCESS, ACTIVITIES_FETCH_SUCCESS, CLEAR_GLOBAL_DATA, CHANGE_DISPLAY_DATE } from '.';
 
 
 export const fetchCategories = () => {
@@ -11,6 +11,13 @@ export const fetchCategories = () => {
       }
       );
   }
+}
+
+export const changeDisplayDate = (delta) => {
+  return {
+    type: CHANGE_DISPLAY_DATE,
+    payload: delta
+  };
 }
 
 export const fetchMetrics = () => {
@@ -32,5 +39,11 @@ export const fetchActivities = () => {
         dispatch({ type: ACTIVITIES_FETCH_SUCCESS, payload: snapshot.val() });
       }
       );
+  }
+}
+
+export const clearGlobalData = () => {
+  return {
+    type: CLEAR_GLOBAL_DATA
   }
 }

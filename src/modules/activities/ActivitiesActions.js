@@ -1,12 +1,18 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
-import { ACTIVITY_FORM_UPDATE, ACTIVITY_PUSH_SUCCESS } from '.';
+import { ACTIVITY_FORM_UPDATE, ACTIVITY_PUSH_SUCCESS, CLEAR_ACTIVITY_FORM_DATA } from '.';
 
 export const activityFormUpdate = ({ prop, value }) => {
   return {
     type: ACTIVITY_FORM_UPDATE,
     payload: { prop, value }
   };
+}
+
+export const clearActivityFormData = () => {
+  return {
+    type: CLEAR_ACTIVITY_FORM_DATA
+  }
 }
 
 export const createActivity = ({ startTime, endTime, categoryUid, activityMetrics }) => {

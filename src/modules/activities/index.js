@@ -7,3 +7,4 @@ export * from './ActivityFormReducer';
 export * from './types';
 export * from './ListItem';
 export * from './EditActivityScreen';
+export * from './DateSelector';

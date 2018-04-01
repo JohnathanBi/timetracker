@@ -1,6 +1,7 @@
 import {
   CATEGORY_PROPERTY_UPDATE,
-  CATEGORY_PUSH_SUCCESS
+  CATEGORY_PUSH_SUCCESS,
+  CLEAR_CATEGORY_FORM_DATA
 } from '.';
 
 const INITIAL_STATE = {
@@ -14,6 +15,8 @@ export const CategoryFormReducer = (state = INITIAL_STATE, action) => {
       return { ...state, [action.payload.prop]: action.payload.value };
     case CATEGORY_PUSH_SUCCESS:
       return INITIAL_STATE;
+    case CLEAR_CATEGORY_FORM_DATA:
+     return INITIAL_STATE;
     default:
       return state;
   }

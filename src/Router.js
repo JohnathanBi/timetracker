@@ -18,20 +18,20 @@ const RouterComponent = () => {
           <Scene key="mainScreen" component={MainScreen} title="Daily View"  initial />
 
           <Scene key="categoriesScreen"
-          component={CategoriesScreen}
-          title="My Categories"
-          rightTitle="Add"
-          onRight={() => Actions.createCategoryScreen()}
+            component={CategoriesScreen}
+            title="My Categories"
+            rightTitle="Add"
+            onRight={() => Actions.createCategoryScreen()}
           />
-          <Scene key="createCategoryScreen" component={CreateCategoryScreen} title="Create Category"/>
-          <Scene key="editCategoryScreen" component={EditCategoryScreen} title="Edit Category"/>
+          <Scene key="createCategoryScreen" component={CreateCategoryScreen} title="Create Category" />
+          <Scene key="editCategoryScreen" component={EditCategoryScreen} title="Edit Category" />
 
 
           <Scene key="metricsScreen"
-          component={MetricsScreen}
-          title="My Metrics"
-          rightTitle="Add"
-          onRight={() => Actions.createMetricScreen()}
+            component={MetricsScreen}
+            title="My Metrics"
+            rightTitle="Add"
+            onRight={() => Actions.createMetricScreen()}
           />
           <Scene key="editMetricScreen" component={EditMetricScreen} title="Edit Metric" />
           <Scene key="createMetricScreen" component={CreateMetricScreen} title="Create Metric" />

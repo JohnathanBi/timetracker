@@ -168,8 +168,6 @@ class preActivityForm extends Component {
           </Picker>
         </CardSection>
 
-
-        //start time picker
         <CardSection>
           <View style={styles.container}>
             <Text style={styles.pickerTextStyle}>Start Time</Text>
@@ -181,7 +179,6 @@ class preActivityForm extends Component {
           </View>
         </CardSection>
 
-        //end time picker
         <CardSection>
           <View style={styles.container}>
             <Text style={styles.pickerTextStyle}>End Time</Text>

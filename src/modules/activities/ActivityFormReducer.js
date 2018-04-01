@@ -1,4 +1,4 @@
-import { ACTIVITY_FORM_UPDATE, ACTIVITY_PUSH_SUCCESS } from '.';
+import { ACTIVITY_FORM_UPDATE, ACTIVITY_PUSH_SUCCESS, CLEAR_ACTIVITY_FORM_DATA } from '.';
 
 const INITIAL_STATE = {
   startTime: null,
@@ -13,7 +13,8 @@ export const ActivityFormReducer = (state = INITIAL_STATE, action) => {
       return { ...state, [action.payload.prop]: action.payload.value };
     case ACTIVITY_PUSH_SUCCESS:
       return INITIAL_STATE;
-
+    case CLEAR_ACTIVITY_FORM_DATA:
+      return INITIAL_STATE;
     default:
       return state;
   }

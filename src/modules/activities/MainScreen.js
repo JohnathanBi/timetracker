@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
-import { Card, CardSection, Button, fetchCategories, fetchMetrics, fetchActivities } from '../../common';
-import { DailyActivitiesList } from '.'; //TODO
+import { Card, CardSection, Button, fetchCategories, fetchMetrics, fetchActivities, clearGlobalData } from '../../common';
+import { DailyActivitiesList, clearActivityFormData, DateSelector } from '.'; //TODO
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
+import { clearMetricFormData } from '../metrics';
+import { clearCategoryFormData } from '../categories';
+
 
 class preMainScreen extends Component {
 
@@ -27,13 +30,19 @@ class preMainScreen extends Component {
 
     onLogOut() {
       //TODO might want to clean up state.
+      this.props.clearGlobalData();
+      this.props.clearActivityFormData();
+      this.props.clearMetricFormData();
+      this.props.clearCategoryFormData();
+
+      console.log(this.props.master);
+
       Actions.authentication();
     }
 
     render() {
     return (
       <ScrollView>
-        //contains all the actions a user can take
         <Card>
           <CardSection>
             <Button onPress={this.onAddActivity.bind(this)}>
@@ -58,15 +67,23 @@ class preMainScreen extends Component {
               Log Out
             </Button>
           </CardSection>
+
+
+          <DateSelector />
         </Card>
 
-        //displays the list of activities tracked for the current day
+
         <DailyActivitiesList />
       </ScrollView>
     );
   }
 }
 
-const MainScreen = connect(null, { fetchMetrics, fetchCategories, fetchActivities })(preMainScreen);
+
+const mapStateToProps = state => {
+  return { master: state };
+}
+
+const MainScreen = connect(mapStateToProps, { fetchMetrics, fetchCategories, fetchActivities, clearGlobalData, clearMetricFormData, clearActivityFormData, clearCategoryFormData })(preMainScreen);
 
 export { MainScreen };
