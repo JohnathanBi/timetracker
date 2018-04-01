@@ -11,7 +11,7 @@ class preActivityForm extends Component {
 
   componentWillMount() {
     //this is to prevent overriding old data
-    if (this.props.categoryUid === null) {
+    if (!this.props.categoryUid) {
       this.setDefaultCategoryUid();
     }
 
@@ -21,6 +21,15 @@ class preActivityForm extends Component {
     if (this.props.startTime === null || this.props.endTime === null){
       this.setDefaultTime();
     }
+  }
+
+  setDefaultCategoryUid() {
+    let firstUid = null;
+    for(let uid in this.props.activeCategories){
+      firstUid = uid;
+      break;
+    }
+    this.props.activityFormUpdate({ prop: 'categoryUid', value: firstUid });
   }
 
   setDefaultTime() {
@@ -55,9 +64,15 @@ class preActivityForm extends Component {
   setDefaultMetrics() {
     let newActivityMetrics = this.props.activityMetrics;
 
+    //this is to resolve a bug, when u don't save any activity Metrics, it becomes undefined
+    //So I assigned it a blank object. This is for edge case when someone doesn't assign anything
+    //And then creates a metric.
+    if (!newActivityMetrics) {
+      newActivityMetrics = {};
+    }
+
     for(let uid in this.props.activeMetrics){
       let exists = false;
-
       for(let existingUid in this.props.activityMetrics){
         if(existingUid === uid){
           exists = true;
@@ -68,11 +83,12 @@ class preActivityForm extends Component {
         newActivityMetrics = { ...newActivityMetrics, [uid]: 5 };
       }
     }
-
     this.props.activityFormUpdate({ prop: 'activityMetrics', value: newActivityMetrics });
+
   }
 
   getMetricMagnitude(uid){
+    console.log("PROBLEM:", this.props.activityMetrics);
     const magnitude = this.props.activityMetrics[uid];
     return `${magnitude}`;
   }
@@ -82,14 +98,7 @@ class preActivityForm extends Component {
     this.props.activityFormUpdate({ prop: 'activityMetrics', value: newActivityMetrics });
   }
 
-  setDefaultCategoryUid() {
-    let firstUid = null;
-    for(let uid in this.props.activeCategories){
-      firstUid = uid;
-      break;
-    }
-    this.props.activityFormUpdate({ prop: 'categoryUid', value: firstUid });
-  }
+
 
 
   truncateAndFormatMoment(preMoment) {
@@ -97,7 +106,7 @@ class preActivityForm extends Component {
     return truncatedMoment.format();
   }
 
-    renderPickerCategories() {
+  renderPickerCategories() {
       const { activeCategories } = this.props;
       const pickerItemList = _.map(activeCategories,
         (category, uid) => {
@@ -107,15 +116,14 @@ class preActivityForm extends Component {
       );
 
       return pickerItemList;
-    }
+  }
 
-    renderMetricPickers(){
+  renderMetricPickers(){
       const { activeMetrics } = this.props;
 
       const metricPickerList = _.map(activeMetrics,
         (metric, uid) => {
           const { metricName } = metric;
-
           return (
             <CardSection style={{ flexDirection: 'column' }} key={uid}>
               <Text style={styles.pickerTextStyle}>{metricName}</Text>
@@ -141,7 +149,7 @@ class preActivityForm extends Component {
       );
 
       return metricPickerList;
-    }
+  }
 
 
 
@@ -187,7 +195,6 @@ class preActivityForm extends Component {
 
 
         {this.renderMetricPickers()}
-
 
       </Card>
       </View>

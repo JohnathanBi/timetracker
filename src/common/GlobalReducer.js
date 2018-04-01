@@ -65,6 +65,8 @@ export const GlobalReducer = (state = INITIAL_STATE, action) => {
         }
       }
 
+      console.log(allActivities);
+
       return { ...state, allActivities, dailyActivities };
 
     default:

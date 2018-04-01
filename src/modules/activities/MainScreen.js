@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { Card, CardSection, Button, fetchCategories, fetchMetrics, fetchActivities } from '../../common';
 import { DailyActivitiesList } from '.'; //TODO
 import { Actions } from 'react-native-router-flux';
@@ -32,7 +32,7 @@ class preMainScreen extends Component {
 
     render() {
     return (
-      <View>
+      <ScrollView>
         //contains all the actions a user can take
         <Card>
           <CardSection>
@@ -62,7 +62,7 @@ class preMainScreen extends Component {
 
         //displays the list of activities tracked for the current day
         <DailyActivitiesList />
-      </View>
+      </ScrollView>
     );
   }
 }

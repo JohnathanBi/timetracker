@@ -1,8 +1,6 @@
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
-
-
-import { AddActivityScreen, MainScreen } from './modules/activities';
+import { AddActivityScreen, MainScreen, EditActivityScreen } from './modules/activities';
 import { LoginScreen } from './modules/authentication';
 import { CreateCategoryScreen, CategoriesScreen, EditCategoryScreen } from './modules/categories';
 import { EditMetricScreen, MetricsScreen, CreateMetricScreen } from './modules/metrics';
@@ -40,6 +38,7 @@ const RouterComponent = () => {
 
 
           <Scene key="addActivityScreen" component={AddActivityScreen} title="Add Activity" />
+          <Scene key="editActivityScreen" component={EditActivityScreen} title="Edit Activity" />
         </Scene>
       </Scene>
     </Router>

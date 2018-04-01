@@ -9,13 +9,11 @@ class preAddActivityScreen extends Component {
 
   onSaveActivity() {
     const { startTime, endTime, categoryUid, activityMetrics, allActivities } = this.props;
-
     if (this.startEndTimeFeasible(startTime, endTime)) {
       if (this.noOverLap(startTime, endTime, allActivities)) {
         this.props.createActivity({ startTime, endTime, categoryUid, activityMetrics });
       }
     }
-
   }
 
   noOverLap(newStartTime, newEndTime, allActivities) {
@@ -103,8 +101,6 @@ class preAddActivityScreen extends Component {
             Save
           </Button>
         </CardSection>
-
-
 
       </ScrollView>
     );

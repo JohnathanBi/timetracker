@@ -7,11 +7,11 @@ import _ from 'lodash';
 
 class ListItem extends Component{
 
-  onRowPress(){
-    //Actions.editCategoryScreen({ category: this.props.category });
+  onRowPress() {
+    Actions.editActivityScreen({ activity: this.props.activity });
   }
 
-  renderMetricsList(){
+  renderMetricsList() {
     const { namedMetricsList } = this.props;
     const metricsList = _.map(namedMetricsList,
       (magnitude, metricName) => {
@@ -31,7 +31,7 @@ class ListItem extends Component{
 
   render() {
     const { categoryName } = this.props;
-    const { categoryUid, startTime, endTime, activityMetrics } = this.props.activity.item;
+    const { startTime, endTime } = this.props.activity;
     return (
       <TouchableOpacity onPress={this.onRowPress.bind(this)}>
         <CardSection>

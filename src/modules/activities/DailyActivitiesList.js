@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList,ScrollView } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { ListItem } from '.';
 
@@ -39,22 +39,21 @@ class preDailyActivitiesList extends Component {
   }
 
   renderRow(activity) {
-    const { categoryUid, startTime, endTime, activityMetrics } = activity.item;
+    const { categoryUid, startTime, endTime, activityMetrics, uid } = activity.item;
     const categoryName = this.getCategoryNameFromUID(categoryUid);
     const namedMetricsList = this.getNamedMetricsListFromUidList(activityMetrics);
-    return <ListItem activity={activity} categoryName={categoryName} namedMetricsList={namedMetricsList} />;
+    return <ListItem activity={activity.item} categoryName={categoryName} namedMetricsList={namedMetricsList} key={uid} />;
   }
 
   render() {
     return (
 
-      <ScrollView>
         <FlatList
           data={this.props.dailyActivities}
           renderItem={this.renderRow.bind(this)}
           keyExtractor={activity => activity.uid}
+          scrollEnabled
         />
-      </ScrollView>
     );
   }
 }

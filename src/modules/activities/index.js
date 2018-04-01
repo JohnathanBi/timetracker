@@ -6,3 +6,4 @@ export * from './ActivityForm';
 export * from './ActivityFormReducer';
 export * from './types';
 export * from './ListItem';
+export * from './EditActivityScreen';
