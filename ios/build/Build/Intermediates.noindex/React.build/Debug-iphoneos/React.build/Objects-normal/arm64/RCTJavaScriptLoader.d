@@ -1,0 +1,26 @@
+dependencies: \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/React/Base/RCTJavaScriptLoader.mm \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/cxxreact/JSBundleType.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/jschelpers/JavaScriptCore.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/jschelpers/JSCWrapper.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/React/Base/RCTConvert.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/React/Views/RCTAnimationType.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/React/Views/RCTBorderStyle.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/React/Views/RCTPointerEvents.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/React/Views/RCTTextDecorationLineType.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/yoga/Yoga.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/yoga/YGEnums.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/yoga/YGMacros.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/React/Base/RCTMultipartDataTask.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/React/Base/RCTMultipartStreamReader.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/React/Base/RCTPerformanceLogger.h

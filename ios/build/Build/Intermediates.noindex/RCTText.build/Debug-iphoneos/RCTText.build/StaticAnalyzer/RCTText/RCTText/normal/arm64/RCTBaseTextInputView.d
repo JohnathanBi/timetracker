@@ -1,0 +1,33 @@
+dependencies: \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/Libraries/Text/TextInput/RCTBaseTextInputView.m \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/Libraries/Text/TextInput/RCTBaseTextInputView.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTView.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTBorderStyle.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTComponent.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTPointerEvents.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/Libraries/Text/TextInput/RCTBackedTextInputDelegate.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/Libraries/Text/TextInput/RCTBackedTextInputViewProtocol.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTAccessibilityManager.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTBridge.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTBridgeDelegate.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTJavaScriptLoader.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTDefines.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTBridgeModule.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTFrameUpdate.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTInvalidating.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTConvert.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTAnimationType.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTLog.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTAssert.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTUtils.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTTextDecorationLineType.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/yoga/Yoga.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/yoga/YGEnums.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/yoga/YGMacros.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTEventDispatcher.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTUIManager.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTRootView.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/RCTViewManager.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/ios/build/Build/Products/Debug-iphoneos/include/React/UIView+React.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/Libraries/Text/RCTTextAttributes.h \
+  /Users/johnathanbi/Desktop/Project/timetracker/node_modules/react-native/Libraries/Text/TextInput/RCTTextSelection.h

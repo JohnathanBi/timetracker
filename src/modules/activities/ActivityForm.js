@@ -1,13 +1,47 @@
 import React, { Component } from 'react';
-import { View, Text, Picker, DatePickerIOS, ScrollView } from 'react-native';
+import { View, Text, Picker, DatePickerIOS, TouchableOpacity } from 'react-native';
 import { Card, CardSection, Button } from '../../common';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { activityFormUpdate } from '.';
 import moment from 'moment';
+import DateTimePicker from 'react-native-modal-datetime-picker';
 
 class preActivityForm extends Component {
-  // state = { showStartTimePicker: false, showEndTimePicker: false };
+
+  state = {
+      isStartTimePickerVisible: false,
+      isEndTimePickerVisible: false
+    };
+
+  showStartTimePicker() {
+    this.setState({ isStartTimePickerVisible: true });
+  }
+
+  hideStartTimePicker() {
+     this.setState({ isStartTimePickerVisible: false });
+  }
+
+  onStartTimePicked(date) {
+     this.props.activityFormUpdate({ prop: 'startTime', value: this.truncateAndFormatMoment(moment(date)) });
+     this.hideStartTimePicker();
+  }
+
+  showEndTimePicker() {
+    this.setState({ isEndTimePickerVisible: true });
+  }
+
+  hideEndTimePicker() {
+     this.setState({ isEndTimePickerVisible: false });
+  }
+
+  onEndTimePicked(date) {
+     this.props.activityFormUpdate({ prop: 'endTime', value: this.truncateAndFormatMoment(moment(date)) });
+     this.hideEndTimePicker();
+  }
+
+
+
 
   componentWillMount() {
     //this is to prevent overriding old data
@@ -98,9 +132,6 @@ class preActivityForm extends Component {
     this.props.activityFormUpdate({ prop: 'activityMetrics', value: newActivityMetrics });
   }
 
-
-
-
   truncateAndFormatMoment(preMoment) {
     const truncatedMoment = preMoment.clone().second(0).millisecond(0);
     return truncatedMoment.format();
@@ -169,25 +200,35 @@ class preActivityForm extends Component {
         </CardSection>
 
         <CardSection>
-          <View style={styles.container}>
-            <Text style={styles.pickerTextStyle}>Start Time</Text>
-            <DatePickerIOS
-               date={(new Date(this.props.startTime))}
-               onDateChange={date => this.props.activityFormUpdate({ prop: 'startTime', value: this.truncateAndFormatMoment(moment(date)) })}
-               minuteInterval={5}
-            />
-          </View>
+          <View style={{ flex: 1 }}>
+           <TouchableOpacity onPress={() => this.showStartTimePicker()}>
+             <Text>`startTime: ${moment(this.props.startTime).format('LLLL')}`</Text>
+           </TouchableOpacity>
+           <DateTimePicker
+            date={(new Date(this.props.startTime))}
+             isVisible={this.state.isStartTimePickerVisible}
+             onConfirm={date => this.onStartTimePicked(date)}
+             onCancel={() => this.hideStartTimePicker()}
+             minuteInterval={5}
+             mode={'datetime'}
+           />
+         </View>
         </CardSection>
 
         <CardSection>
-          <View style={styles.container}>
-            <Text style={styles.pickerTextStyle}>End Time</Text>
-            <DatePickerIOS
-               date={(new Date(this.props.endTime))}
-               onDateChange={date => this.props.activityFormUpdate({ prop: 'endTime', value: this.truncateAndFormatMoment(moment(date)) })}
-               minuteInterval={5}
-            />
-          </View>
+          <View style={{ flex: 1 }}>
+           <TouchableOpacity onPress={() => this.showEndTimePicker()}>
+             <Text>`endTime: ${moment(this.props.endTime).format('LLLL')}`</Text>
+           </TouchableOpacity>
+           <DateTimePicker
+            date={(new Date(this.props.endTime))}
+             isVisible={this.state.isEndTimePickerVisible}
+             onConfirm={date => this.onEndTimePicked(date)}
+             onCancel={() => this.hideEndTimePicker()}
+             minuteInterval={5}
+             mode={'datetime'}
+           />
+           </View>
         </CardSection>
 
 
