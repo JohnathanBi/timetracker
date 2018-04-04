@@ -33,7 +33,7 @@ export const GlobalReducer = (state = INITIAL_STATE, action) => {
 
       return {...state, allCategories, activeCategories  };
 
-      case METRICS_FETCH_SUCCESS:
+    case METRICS_FETCH_SUCCESS:
         const allMetrics = action.payload;
         let activeMetrics = {};
 
@@ -74,7 +74,6 @@ export const GlobalReducer = (state = INITIAL_STATE, action) => {
       return INITIAL_STATE;
 
     case CHANGE_DISPLAY_DATE:
-
 
       //increment or decrease the display date
       const currentDisplayDate = moment(state.displayDate);

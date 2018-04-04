@@ -6,6 +6,7 @@ import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { clearMetricFormData } from '../metrics';
 import { clearCategoryFormData } from '../categories';
+import firebase from 'firebase';
 
 
 class preMainScreen extends Component {
@@ -37,7 +38,8 @@ class preMainScreen extends Component {
 
       console.log(this.props.master);
 
-      Actions.authentication();
+      firebase.auth().signOut().then(() => Actions.authentication());
+
     }
 
     render() {

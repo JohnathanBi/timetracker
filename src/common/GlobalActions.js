@@ -4,6 +4,7 @@ import { CATEGORIES_FETCH_SUCCESS, METRICS_FETCH_SUCCESS, ACTIVITIES_FETCH_SUCCE
 
 export const fetchCategories = () => {
   const { currentUser } = firebase.auth();
+
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/categories`)
       .on('value', snapshot => {
