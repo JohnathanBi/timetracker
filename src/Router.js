@@ -8,14 +8,14 @@ import { EditMetricScreen, MetricsScreen, CreateMetricScreen } from './modules/m
 
 const RouterComponent = () => {
   return (
-    <Router>
-      <Scene key="root" hideNavBar>
-        <Scene key="authentication" initial >
-          <Scene key="login" component={LoginScreen} title="Time Tracker" initial />
+    <Router >
+      <Scene key="root" >
+        <Scene key="authentication" initial  >
+          <Scene key="login" component={LoginScreen} title="Time Tracker" initial hideNavBar />
         </Scene>
 
-        <Scene key="main" >
-          <Scene key="mainScreen" component={MainScreen} title="Daily View"  initial />
+        <Scene key="main" hideNavBar >
+          <Scene key="mainScreen" component={MainScreen} title="Daily View" initial hideNavBar />
 
           <Scene key="categoriesScreen"
             component={CategoriesScreen}
@@ -23,8 +23,8 @@ const RouterComponent = () => {
             rightTitle="Add"
             onRight={() => Actions.createCategoryScreen()}
           />
-          <Scene key="createCategoryScreen" component={CreateCategoryScreen} title="Create Category" />
-          <Scene key="editCategoryScreen" component={EditCategoryScreen} title="Edit Category" />
+          <Scene key="createCategoryScreen" component={CreateCategoryScreen} title="Create Category"  />
+          <Scene key="editCategoryScreen" component={EditCategoryScreen} title="Edit Category"  />
 
 
           <Scene key="metricsScreen"
