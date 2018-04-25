@@ -1,23 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 
 
-const Header = (props) => {
-  return (
-    <View style={[style.containerStyle, props.style]}>
-      {props.children}
-    </View>
-  );
-};
+class Header extends Component {
+
+  render() {
+    return (
+      <View style={style.headerStyle}>
+        {this.props.children}
+      </View>
+    );
+  }
+}
 
 const style = {
-  containerStyle: {
-    borderBottomWidth: 1,
-    padding: 5,
+  headerStyle: {
+    height: 72,
     backgroundColor: '#fff',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     flexDirection: 'row',
-    borderColor: '#ddd',
+    alignItems: 'center',
+    borderColor: '#fff',
     position: 'relative'
   }
 };
