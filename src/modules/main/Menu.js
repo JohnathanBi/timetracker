@@ -1,82 +1,63 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Icons, IconButton } from '../../common/assets/icons';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { globalPropertyUpdate, ACTIVTIES_SCREEN, STATISTICS_SCREEN, METRICS_SCREEN, CATEGORIES_SCREEN } from '../../common';
+import firebase from 'firebase';
 
-class preMenuItemContainer extends Component{
+import { Icons, IconButton } from '../../common/assets/icons';
+import { clearGlobalData, globalPropertyUpdate, ACTIVTIES_SCREEN, STATISTICS_SCREEN, METRICS_SCREEN, CATEGORIES_SCREEN } from '../../common';
 
-  switchPage(newPage){
-    this.props.globalPropertyUpdate({ prop: 'currentMainPage', value: newPage });
+import { clearMetricFormData } from '../metrics';
+import { clearCategoryFormData } from '../categories';
+import { clearActivityFormData } from '../activities';
+
+import { MenuItemContainer } from '.';
+
+
+class preMenu extends Component{
+
+  onLogOut() {
+    //TODO might want to clean up state.
+    this.props.clearGlobalData();
+    this.props.clearActivityFormData();
+    this.props.clearMetricFormData();
+    this.props.clearCategoryFormData();
+    firebase.auth().signOut().then(() => Actions.authentication());
   }
 
-
-  render()  {
-    let isSelected = false;
-
-    if (this.props.currentPage === this.props.thisPage){
-      isSelected = true;
-    }
-
-    return (
-      <TouchableOpacity onPress={() => { this.switchPage(this.props.thisPage); }}>
-      <View style={isSelected ? [style.menuItemContainerStyle, { backgroundColor: '#f1f1f1' }] : style.menuItemContainerStyle}>
-        {this.props.children}
-      </View>
-      </TouchableOpacity>
-    );
-  }
-}
-
-
-const mapStateToProps = state => {
-  return { currentPage: state.global.currentMainPage };
-}
-
-const MenuItemContainer = connect(mapStateToProps, { globalPropertyUpdate })(preMenuItemContainer);
-
-
-class Menu extends Component{
   render() {
-
-
     return (
       <View style={{ flex: 1, backgroundColor: '#fff', paddingTop: 15 }}>
 
-      <Text>
-        {this.props.currentPage}
-      </Text>
-
-        <MenuItemContainer thisPage={ACTIVTIES_SCREEN}>
+        <MenuItemContainer thisPage={ACTIVTIES_SCREEN} closeMenu={this.props.closeMenu}>
           <IconButton iconSource={Icons.dailyIcon} overRideStyles={style.menuItemIconStyle} />
           <Text style={style.menuItemTextStyle}>
             Daily View
           </Text>
         </MenuItemContainer>
 
-        <MenuItemContainer thisPage={STATISTICS_SCREEN}>
+        <MenuItemContainer thisPage={STATISTICS_SCREEN} closeMenu={this.props.closeMenu}>
           <IconButton iconSource={Icons.statsIcon} overRideStyles={style.menuItemIconStyle} />
           <Text style={style.menuItemTextStyle}>
             Weekly Stats
           </Text>
         </MenuItemContainer>
 
-        <MenuItemContainer thisPage={METRICS_SCREEN}>
+        <MenuItemContainer thisPage={METRICS_SCREEN} closeMenu={this.props.closeMenu}>
           <IconButton iconSource={Icons.metricsIcon} overRideStyles={style.menuItemIconStyle} />
           <Text style={style.menuItemTextStyle}>
             My Metrics
           </Text>
         </MenuItemContainer>
 
-        <MenuItemContainer thisPage={CATEGORIES_SCREEN}>
+        <MenuItemContainer thisPage={CATEGORIES_SCREEN} closeMenu={this.props.closeMenu}>
           <IconButton iconSource={Icons.categoriesIcon} overRideStyles={style.menuItemIconStyle} />
           <Text style={style.menuItemTextStyle}>
             My Categories
           </Text>
         </MenuItemContainer>
 
-        <TouchableOpacity onPress={() => { console.log('logOut'); }}>
+        <TouchableOpacity onPress={() => { this.onLogOut(); }}>
         <View style={style.menuItemContainerStyle}>
           <IconButton iconSource={Icons.logOutIcon} overRideStyles={style.menuItemIconStyle} />
           <Text style={style.menuItemTextStyle}>
@@ -89,7 +70,6 @@ class Menu extends Component{
     );
   }
 }
-
 
 const style = {
   menuItemContainerStyle: {
@@ -113,7 +93,6 @@ const style = {
   }
 };
 
-
-
+const Menu = connect(null, { clearGlobalData, clearMetricFormData, clearActivityFormData, clearCategoryFormData })(preMenu);
 
 export { Menu };

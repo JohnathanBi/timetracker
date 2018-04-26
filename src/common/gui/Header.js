@@ -19,7 +19,6 @@ const style = {
     backgroundColor: '#fff',
     justifyContent: 'space-between',
     flexDirection: 'row',
-    alignItems: 'center',
     borderColor: '#fff',
     position: 'relative'
   }

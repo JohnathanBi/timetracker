@@ -4,6 +4,11 @@ import { MetricForm, createMetric } from '.';
 import { connect } from 'react-redux';
 import { CardSection, Button } from '../../common';
 
+import { Header, BottomActionBar } from '../../common/gui';
+import { Icons, IconButton } from '../../common/assets/icons';
+
+import { Actions } from 'react-native-router-flux';
+
 class preCreateMetricScreen extends Component {
   onCreateMetric() {
     const { metricName } = this.props;
@@ -12,14 +17,29 @@ class preCreateMetricScreen extends Component {
 
   render() {
     return (
-      <View>
-        <MetricForm />
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: '#ffffff',
+          justifyContent: 'space-between'
+        }}
+      >
 
-        <CardSection>
-          <Button onPress={this.onCreateMetric.bind(this)}>
-            Create Metric
-          </Button>
-        </CardSection>
+        <View>
+          <Header>
+            <IconButton
+              overRideStyles={{ marginLeft: 18, marginTop: 30 }}
+              iconSource={Icons.backIcon}
+              onPress={() => { Actions.pop(); }}
+            />
+          </Header>
+
+          <MetricForm />
+        </View>
+
+
+        <BottomActionBar text={'Save'} onPress={this.onCreateMetric.bind(this)} />
+
       </View>
     );
 }

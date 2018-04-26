@@ -34,7 +34,7 @@ const RouterComponent = () => {
             onRight={() => Actions.createMetricScreen()}
           />
           <Scene key="editMetricScreen" component={EditMetricScreen} title="Edit Metric" />
-          <Scene key="createMetricScreen" component={CreateMetricScreen} title="Create Metric" />
+          <Scene key="createMetricScreen" component={CreateMetricScreen} title="Create Metric" hideNavBar />
 
 
           <Scene key="addActivityScreen" component={AddActivityScreen} title="Add Activity" />

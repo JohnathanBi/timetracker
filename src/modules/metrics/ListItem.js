@@ -1,33 +1,67 @@
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { CardSection } from '../../common';
 
-class ListItem extends Component{
+import { Icons, IconButton } from '../../common/assets/icons';
 
-  onRowPress(){
+import { connect } from 'react-redux';
+import { updateMetric } from '.';
+
+class preListItem extends Component{
+
+  onRowPress() {
     Actions.editMetricScreen({ metric: this.props.metric });
+  }
+
+  onDeleteMetric() {
+    const { uid, metricName } = this.props.metric.item;
+    this.props.updateMetric({ uid, isDeleted: true, metricName });
   }
 
   render() {
     const { metricName } = this.props.metric.item;
     return (
-      <TouchableOpacity onPress={this.onRowPress.bind(this)}>
-        <CardSection>
-          <Text>
+        <View style={styles.containerStyle}>
+          <Text style={styles.textStyle}>
             {metricName}
           </Text>
-        </CardSection>
-      </TouchableOpacity>
+
+          <View style={styles.iconContainerStyle}>
+            <IconButton
+              iconSource={Icons.editIconDark}
+              onPress={this.onRowPress.bind(this)}
+              overRideStyles={{ marginRight: 19 }}
+              />
+
+            <IconButton
+             iconSource={Icons.deleteIconDark}
+             onPress={this.onDeleteMetric.bind(this)}
+             />
+          </View>
+        </View>
     );
   }
 }
 
 const styles = {
-  titleStyle: {
-    fontSize: 18,
-    paddingLeft: 15
+  containerStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+    marginLeft: 20,
+    marginRight: 20
+  },
+  textStyle: {
+    fontSize: 19,
+    fontWeight: 'bold',
+    marginTop: 4
+  },
+  iconContainerStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   }
 }
+
+const ListItem = connect(null, { updateMetric })(preListItem);
 
 export { ListItem };
