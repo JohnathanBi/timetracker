@@ -3,7 +3,9 @@ import {
   METRICS_FETCH_SUCCESS,
   ACTIVITIES_FETCH_SUCCESS,
   CLEAR_GLOBAL_DATA,
-  CHANGE_DISPLAY_DATE
+  CHANGE_DISPLAY_DATE,
+  GLOBAL_PROPERTY_UPDATE,
+  ACTIVTIES_SCREEN
 } from '.';
 import _ from 'lodash';
 import moment from 'moment';
@@ -14,12 +16,14 @@ const INITIAL_STATE = {
   allMetrics: null,
   activeMetrics: null,
   allActivities: null,
-  displayDate: moment().format()
+  displayDate: moment().format(),
+  currentMainPage: 'activities_screen'
 };
 
 export const GlobalReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CATEGORIES_FETCH_SUCCESS:
+
       const allCategories = action.payload;
       let activeCategories = {};
 
@@ -100,7 +104,13 @@ export const GlobalReducer = (state = INITIAL_STATE, action) => {
 
 
       return { ...state, displayDate: currentDisplayDate.format(), dailyActivities: newDailyActivities };
+
+
+    case GLOBAL_PROPERTY_UPDATE:
+        return { ...state, [action.payload.prop]: action.payload.value };
+
     default:
       return state;
+
   }
 }

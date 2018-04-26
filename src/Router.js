@@ -4,7 +4,7 @@ import { AddActivityScreen, MainScreen, EditActivityScreen } from './modules/act
 import { LoginScreen } from './modules/authentication';
 import { CreateCategoryScreen, CategoriesScreen, EditCategoryScreen } from './modules/categories';
 import { EditMetricScreen, MetricsScreen, CreateMetricScreen } from './modules/metrics';
-
+import { HomeScreen } from './modules/main'
 
 const RouterComponent = () => {
   return (
@@ -14,8 +14,8 @@ const RouterComponent = () => {
           <Scene key="login" component={LoginScreen} title="Time Tracker" initial hideNavBar />
         </Scene>
 
-        <Scene key="main" hideNavBar >
-          <Scene key="mainScreen" component={MainScreen} title="Daily View" initial hideNavBar />
+        <Scene type="reset" key="main" >
+          <Scene key="HomeScreen" component={HomeScreen} initial hideNavBar />
 
           <Scene key="categoriesScreen"
             component={CategoriesScreen}

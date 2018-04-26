@@ -1,5 +1,12 @@
 import firebase from 'firebase';
-import { CATEGORIES_FETCH_SUCCESS, METRICS_FETCH_SUCCESS, ACTIVITIES_FETCH_SUCCESS, CLEAR_GLOBAL_DATA, CHANGE_DISPLAY_DATE } from '.';
+import {
+  GLOBAL_PROPERTY_UPDATE,
+  CATEGORIES_FETCH_SUCCESS,
+  METRICS_FETCH_SUCCESS,
+  ACTIVITIES_FETCH_SUCCESS,
+  CLEAR_GLOBAL_DATA,
+  CHANGE_DISPLAY_DATE
+ } from '.';
 
 
 export const fetchCategories = () => {
@@ -11,6 +18,13 @@ export const fetchCategories = () => {
         dispatch({ type: CATEGORIES_FETCH_SUCCESS, payload: snapshot.val() });
       }
       );
+  }
+}
+
+export const globalPropertyUpdate = ({ prop, value }) => {
+  return {
+    type: GLOBAL_PROPERTY_UPDATE,
+    payload: { prop, value }
   }
 }
 
